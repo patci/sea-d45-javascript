@@ -1,6 +1,6 @@
 'use strict';
 
-var Greet = exports = module.exports = function() {
+var Greet = module.exports = exports = function() {
   this.greeting = 'hello world';
 };
 
