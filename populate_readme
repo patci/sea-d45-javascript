@@ -9,7 +9,7 @@ end
 week_readmes = Dir.glob('week*/README.md').sort
 week_readmes.each do |week|
   week_file = File.open(week)
-  day_files = Dir.glob("#{File.dirname(week)}/*/README.md")
+  day_files = Dir.glob("\n#{File.dirname(week)}/*/README.md")
   puts day_files
   lines = week_file.readlines
   title = "#{week.split('/')[0].split('-').join(' ')} #{lines[0]}"
