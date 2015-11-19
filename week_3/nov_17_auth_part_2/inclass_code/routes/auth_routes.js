@@ -13,8 +13,12 @@ authRouter.post('/signup', jsonParser, function(req, res) {
 
   user.save(function(err, data) {
     if (err) return handleError(err, res);
-    //profit
-    res.json({msg: 'user created'});
+    //prophet
+    user.generateToken(function(err, token) {
+      if (err) return handleError(err, res);
+
+      res.json({token: token});
+    });
   });
 });
 
@@ -40,6 +44,10 @@ authRouter.get('/signin', basicHttp, function(req, res) {
      return res.status(401).json({msg: 'authentiCat seyazzz noe@@@!!111'});
     }
 
-    res.json({msg: 'authentiCat has determined you are you but be weary because auth is tough.'});
+    user.generateToken(function(err, token) {
+      if (err) return handleError(err, res);
+
+      res.json({token: token});
+    });
   });
 });
