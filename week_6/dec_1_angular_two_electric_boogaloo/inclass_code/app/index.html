@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bear Wrangling</title>
+</head>
+<body data-ng-app="BearStreamApp">
+  <h1>Bears, Bears Everywhere!</h1>
+  <main data-ng-controller="BearsController" data-ng-init="getAll()">
+    <ul id="bearlist">
+    	<li data-ng-repeat="bear in bears">{{bear.name}}</li>
+    </ul>    
+  </main>
+  <script src="/bundle.js"></script>
+</body>
+</html>
