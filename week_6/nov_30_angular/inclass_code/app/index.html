@@ -6,20 +6,11 @@
 </head>
 <body data-ng-app="BearStreamApp">
   <h1>Bears, Bears Everywhere!</h1>
-  inside body: {{greeting}}
-  <main data-ng-controller="BearsController">
-    inside bears controller: {{greeting}}
-    <input type="text" data-ng-model="greeting">
-    <section data-ng-controller="DummyController">
-      from inside dummy controller: {{greeting}}
-      <input type="text" data-ng-model="greeting">
-    </section>
+  <main data-ng-controller="BearsController" data-ng-init="getAll()">
+    <ul id="bearlist">
+    	<li data-ng-repeat="bear in bears">{{bear.name}}</li>
+    </ul>    
   </main>
-  <div data-ng-controller="DummyController">
-    outside bear controller in dummy controller: {{greeting}}
-  </div>
-
   <script src="/bundle.js"></script>
 </body>
-outside body: {{greeting}}
 </html>
