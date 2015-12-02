@@ -9,6 +9,15 @@ module.exports = function(app) {
         }, function(err) {
           console.log(err.data);
         });
-    }
+    };
+
+    $scope.create = function(bear) {
+      $http.post('/api/bears', bear)
+        .then(function(res) {
+          $scope.bears.push(res.data);
+        }, function(err) {
+          console.log(err.data);
+        });
+    };
   }]);
 };
