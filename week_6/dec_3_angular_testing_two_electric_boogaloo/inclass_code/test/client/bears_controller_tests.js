@@ -19,4 +19,35 @@ describe('bears controller', function() {
     expect(typeof controller).toBe('object');
     expect(Array.isArray($scope.bears)).toBe(true);
   });
+
+  describe('REST request functions', function() {
+    beforeEach(angular.mock.inject(function(_$httpBackend_, $rootScope) {
+      $httpBackend = _$httpBackend_;
+      $scope = $rootScope.$new();
+      $ControllerConstructor('BearsController', {$scope: $scope});
+    }));
+
+    afterEach(function() {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    });
+
+    it('should add an array to bears with a GET all', function() {
+      $httpBackend.expectGET('/api/bears').respond(200, [{_id: 1, name: 'test bear'}]);
+      $scope.getAll();
+      $httpBackend.flush();
+      expect($scope.bears[0].name).toBe('test bear');
+    });
+
+    it('should be able to create a new bear', function() {
+      $httpBackend.expectPOST('/api/bears', {name: 'test bear', fishPreference: 'Salmons', flavor: "grizzly"}).respond(200, {name: 'a different bear'});
+      expect($scope.bears.length).toBe(0);
+      expect($scope.newBear).toEqual($scope.defaults);      
+      $scope.newBear.name = 'test bear';
+      $scope.create($scope.newBear);
+      $httpBackend.flush();
+      expect($scope.bears[0].name).toBe('a different bear');
+      expect($scope.newBear).toEqual($scope.defaults);
+    });
+  });
 });

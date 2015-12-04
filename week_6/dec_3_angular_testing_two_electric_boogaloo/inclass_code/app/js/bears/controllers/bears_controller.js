@@ -1,27 +1,26 @@
+var angular = window.angular;
 module.exports = function(app) {
-  app.controller('BearsController', ['$scope', '$http', function($scope, $http) {
+  app.controller('BearsController', ['$scope', '$http', 'cfResource', function($scope, $http, cfResource) {
     $scope.bears = [];
     $scope.errors = [];
-    var defaults = {flavor: 'grizzly', fishPreference: 'Salmons'};
-    $scope.newBear = Object.create(defaults);
+    $scope.defaults = {flavor: 'grizzly', fishPreference: 'Salmons'};
+    $scope.newBear = angular.copy($scope.defaults);
+    var bearsResource = cfResource('bears');
 
     $scope.getAll = function() {
-      $http.get('/api/bears')
-        .then(function(res) {
-          $scope.bears = res.data;
-        }, function(err) {
-          console.log(err.data);
-        });
+      bearsResource.getAll(function(err, data) {
+        if (err) return err;
+
+        $scope.bears = data;
+      });
     };
 
     $scope.create = function(bear) {
-      $http.post('/api/bears', bear)
-        .then(function(res) {
-          $scope.bears.push(res.data);
-          $scope.newBear = Object.create(defaults);
-        }, function(err) {
-          console.log(err.data)
-        });
+      bearsResource.create(bear, function(err, data){
+        if (err) return err;
+        $scope.bears.push(data);
+        $scope.newBear = angular.copy($scope.defaults); 
+      });
     };
 
     $scope.update = function(bear) {
