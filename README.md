@@ -12,12 +12,14 @@ The assignments org lives here: [sea-d45-javascript-assignments](https://github.
   * event emitters
   * streams
   * fs
+
 #[Week_2 Vanilla Node Servers](week_2/README.md)
   * tcp servers
   * http servers
   * working with pipes
   * simple routing
   * sending html files
+  
 #[Week_3 Express and Mongodb](week_3/README.md)
   * express
   * express middleware
@@ -25,6 +27,7 @@ The assignments org lives here: [sea-d45-javascript-assignments](https://github.
   * testing REST apis
   * basic http authentication
   * token based authentication
+  
 #[Week_5 Angular Basics](week_5/README.md)
   * Client side build process
   * including Angular in a build
@@ -34,6 +37,7 @@ The assignments org lives here: [sea-d45-javascript-assignments](https://github.
   * Angular CRUD backed by a REST API
   * $http
   * unit testing Angular
+  
 #[Week_6 Advanced Angular](week_6/README.md)
   * angular services
   * angular directives
@@ -41,6 +45,7 @@ The assignments org lives here: [sea-d45-javascript-assignments](https://github.
   * angular root level config
   * angular providers
   * cookies and angular
+  
 #[Week_7 Ionic](week_7/README.md)
   * android sdk
   * building ionic apps
